@@ -53,6 +53,7 @@ void OnPlayerDeath(Player* player, Player* attacker, Player* assister, bool assi
 
     if(countT == 2) {
         isLRActive = true;
+        g_playerManager->SendMsg(HUD_PRINTTALK, "Начался LR");
     }
 }
 
