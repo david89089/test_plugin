@@ -32,13 +32,13 @@ void OnPluginStart()
     print("Plugin start URAAA");
 }
 
-void OnPluginStop()
-{
+void OnPlayerSpawn(Player* player) {
+    player->SendMsg(HUD_PRINTTALK, "%s - возродился", player->GetName());
 }
 
 const char *GetPluginAuthor()
 {
-    return "";
+    return "Dave";
 }
 
 const char *GetPluginVersion()
