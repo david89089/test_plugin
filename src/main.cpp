@@ -48,7 +48,7 @@ void OnPlayerDeath(Player* player, Player* attacker, Player* assister, bool assi
         g_playerManager->SendMsg(HUD_PRINTTALK, "Неактивно, игроков %d", g_playerManager->GetPlayers());
         for (int i = 0; i < g_playerManager->GetPlayers(); i++) { 
             Player* iPlayer = g_playerManager->GetPlayer(i);
-            if(iPlayer->health->Get() > 0 && player->team->Get() == TEAM_T) {
+            if(iPlayer->health->Get() > 0 && iPlayer->team->Get() == TEAM_T) {
                 countT++;
                 g_playerManager->SendMsg(HUD_PRINTTALK, "Живых Т игроков %d", countT);
             }
