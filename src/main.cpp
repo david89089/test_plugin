@@ -42,7 +42,7 @@ void OnPlayerSpawn(Player* player) {
 void OnPlayerDeath(Player* player, Player* attacker, Player* assister, bool assistedflash, const char* weapon, bool headshot, short dominated, short revenge, short wipe, short penetrated, bool noreplay, bool noscope, bool thrusmoke, bool attackerblind, float distance, short dmg_health, short dmg_armor, short hitgroup)
 {
     int countT = 0;
-    g_playerManager->SendMsg(HUD_PRINTTALK, "Умер %s", player->getName());
+    g_playerManager->SendMsg(HUD_PRINTTALK, "Умер %s", player->GetName());
 
     if(!isLRActive) {
         g_playerManager->SendMsg(HUD_PRINTTALK, "Неактивно, игроков %d", g_playerManager->GetPlayers());
