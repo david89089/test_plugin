@@ -14,6 +14,8 @@ Commands *commands = nullptr;
 Configuration *config = nullptr;
 Logger *logger = nullptr;
 Timers *timers = nullptr;
+int isLRActive = false;
+
 
 void OnProgramLoad(const char *pluginName, const char *mainFilePath)
 {
@@ -34,6 +36,29 @@ void OnPluginStart()
 
 void OnPlayerSpawn(Player* player) {
     player->SendMsg(HUD_PRINTTALK, "%s - возродился", player->GetName());
+    player->weapons->RemoveWeapons();
+}
+
+void OnPlayerDeath(Player* player, Player* attacker, Player* assister, bool assistedflash, const char* weapon, bool headshot, short dominated, short revenge, short wipe, short penetrated, bool noreplay, bool noscope, bool thrusmoke, bool attackerblind, float distance, short dmg_health, short dmg_armor, short hitgroup)
+{
+    int countT = 0;
+    if(!isLRActive) {
+        for (int i = 0; i < g_playerManager->GetPlayers(); i++) { 
+            Player* iPlayer = g_playerManager->GetPlayer(i);
+            if(iPlayer->health->Get() > 0 && player->team->Get() == TEAM_T) {
+                countT++;
+            }
+        }
+    }
+
+    if(countT == 2) {
+        isLRActive = true;
+    }
+}
+
+void OnRoundStart(long timelimit, long fraglimit, const char* objective)
+{
+    isLRActive = false;
 }
 
 const char *GetPluginAuthor()
